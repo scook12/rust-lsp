@@ -1,0 +1,62 @@
+[tarpaulin]
+# Configuration for cargo-tarpaulin coverage tool
+
+# Include all source files
+include = ["src/**/*"]
+
+# Exclude generated files, examples, and benchmarks from coverage
+exclude = [
+    "examples/**/*",
+    "benches/**/*",
+    "target/**/*",
+    "tests/common/mod.rs", # Test utilities don't need coverage
+]
+
+# Output formats
+out = ["Html", "Lcov", "Json"]
+
+# Target directory for coverage reports
+target-dir = "target/tarpaulin"
+
+# Timeout for tests (in seconds)
+timeout = 120
+
+# Run tests with all features
+all-features = true
+
+# Don't count doc tests in coverage (they're primarily for documentation)
+ignore-tests = false
+
+# Count hits across all runs
+count = true
+
+# Ignore panics in coverage (they're expected in some error tests)
+ignore-panics = false
+
+# Generate line coverage
+line = true
+
+# Generate branch coverage
+branch = true
+
+# Verbosity level
+verbose = true
+
+# Engine to use (default is auto-detect)
+engine = "llvm"
+
+# Additional options for specific scenarios
+[tarpaulin.report]
+# Fail if coverage falls below threshold (85%)
+fail-under = 85
+
+# Additional coverage thresholds for different parts
+[tarpaulin.thresholds]
+# Line coverage threshold
+line = 85
+
+# Branch coverage threshold  
+branch = 75
+
+# Function coverage threshold
+function = 90

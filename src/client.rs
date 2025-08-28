@@ -31,6 +31,7 @@ pub struct Client<R, W> {
     /// Channel for receiving incoming messages.
     message_receiver: Option<mpsc::UnboundedReceiver<RpcMessage>>,
     /// Channel for sending outgoing messages.
+    #[allow(dead_code)]
     message_sender: mpsc::UnboundedSender<RpcMessage>,
     /// Handle for the message processing task.
     _message_task: tokio::task::JoinHandle<()>,
