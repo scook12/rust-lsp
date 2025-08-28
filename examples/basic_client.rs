@@ -1,9 +1,9 @@
 //! Basic LSP client initialization example
-//! 
+//!
 //! This example shows how to create and initialize an LSP client
 //! with the most basic configuration.
 
-use rust_lsp::{Client, types::*};
+use rust_lsp::{types::*, Client};
 use std::io::Cursor;
 use tokio::time::{timeout, Duration};
 
@@ -55,11 +55,11 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                             Ok(init_result) => {
                                 println!("✅ Initialize response received!");
                                 println!("🔧 Server capabilities:");
-                                
+
                                 if let Some(sync) = init_result.capabilities.text_document_sync {
                                     println!("  📄 Text Document Sync: {:?}", sync);
                                 }
-                                
+
                                 // Print a simple summary of a couple of known capabilities if present
                                 if init_result.capabilities.hover_provider.is_some() {
                                     println!("  🔍 Hover: Supported");
@@ -67,11 +67,14 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                                 if init_result.capabilities.completion_provider.is_some() {
                                     println!("  💡 Completion: Supported");
                                 }
-                                
+
                                 if let Some(server_info) = init_result.server_info {
-                                    println!("  🖥️  Server: {} v{}", 
-                                        server_info.name, 
-                                        server_info.version.unwrap_or_else(|| "unknown".to_string())
+                                    println!(
+                                        "  🖥️  Server: {} v{}",
+                                        server_info.name,
+                                        server_info
+                                            .version
+                                            .unwrap_or_else(|| "unknown".to_string())
                                     );
                                 }
                             }

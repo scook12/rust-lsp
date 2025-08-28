@@ -1,9 +1,9 @@
 //! Diagnostic message handling example
-//! 
+//!
 //! This example demonstrates how to handle diagnostic messages from
 //! language servers, including errors, warnings, and informational messages.
 
-use rust_lsp::{Client, types::*};
+use rust_lsp::{types::*, Client};
 use std::io::Cursor;
 use tokio::time::{timeout, Duration};
 
@@ -40,14 +40,14 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                     if let Some(params) = notif.params {
                         println!("   📄 Received diagnostics notification");
                         println!("   🔍 Raw params: {}", params);
-                        
+
                         // In a real implementation, you would parse the diagnostics here
                         // and extract information like:
                         // - File URI
                         // - Error/Warning/Info messages
                         // - Line/character positions
                         // - Diagnostic codes and sources
-                        
+
                         // Simulate some diagnostic analysis
                         if params.to_string().contains("unused variable") {
                             println!("   ⚠️  Found: Unused variable warning");
@@ -61,7 +61,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                         if params.to_string().contains("TODO") {
                             println!("   💡 Found: TODO comment");
                         }
-                        
+
                         println!(); // Extra spacing between diagnostic sets
                     }
                 } else {
@@ -84,19 +84,34 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Demonstrate diagnostic analysis
     println!("🎯 Diagnostic Analysis Summary");
     println!("=============================");
-    
+
     let sample_diagnostics = vec![
-        ("file:///example.rs", "Error", "E0425", "Cannot find function"),
-        ("file:///example.rs", "Warning", "unused_variables", "Unused variable"),
-        ("file:///helper.rs", "Info", "clippy::missing_const_for_fn", "Could be const"),
+        (
+            "file:///example.rs",
+            "Error",
+            "E0425",
+            "Cannot find function",
+        ),
+        (
+            "file:///example.rs",
+            "Warning",
+            "unused_variables",
+            "Unused variable",
+        ),
+        (
+            "file:///helper.rs",
+            "Info",
+            "clippy::missing_const_for_fn",
+            "Could be const",
+        ),
         ("file:///example.rs", "Hint", "", "TODO comment"),
     ];
-    
+
     let mut error_count = 0;
     let mut warning_count = 0;
     let mut info_count = 0;
     let mut hint_count = 0;
-    
+
     for (file, severity, code, message) in &sample_diagnostics {
         match *severity {
             "Error" => error_count += 1,
@@ -106,14 +121,14 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             _ => {}
         }
     }
-    
+
     println!("📊 Summary:");
     println!("   ❌ Errors: {}", error_count);
     println!("   ⚠️  Warnings: {}", warning_count);
     println!("   ℹ️  Information: {}", info_count);
     println!("   💡 Hints: {}", hint_count);
     println!("   📁 Total files: {}", 2);
-    
+
     println!("\n🔧 How to handle diagnostics in your application:");
     println!("   1. ✅ Subscribe to publishDiagnostics notifications");
     println!("   2. 🎨 Display errors/warnings with appropriate styling");
@@ -121,13 +136,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("   4. 🏷️  Process diagnostic tags for special handling");
     println!("   5. 📍 Update UI based on line/character positions");
     println!("   6. 🔄 Clear previous diagnostics when new ones arrive");
-    
+
     println!("\n💡 Pro tips:");
     println!("   - Group diagnostics by file for efficient UI updates");
     println!("   - Use severity levels to prioritize display");
     println!("   - Cache diagnostic codes for quick reference");
     println!("   - Implement filtering by severity or source");
-    
+
     println!("\n🏁 Diagnostics example completed!");
 
     Ok(())
