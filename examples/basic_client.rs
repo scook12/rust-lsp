@@ -26,7 +26,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("✅ Client created successfully");
 
     // Create initialization parameters (use defaults to match crate types)
-    let init_params = InitializeParams {
+    let _init_params = InitializeParams {
         process_id: Some(std::process::id()),
         client_info: Some(ClientInfo {
             name: "Basic Example Client".to_string(),

@@ -112,6 +112,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut info_count = 0;
     let mut hint_count = 0;
 
+    #[allow(unused_variables)]
     for (file, severity, code, message) in &sample_diagnostics {
         match *severity {
             "Error" => error_count += 1,

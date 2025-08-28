@@ -46,7 +46,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // Simulate receiving diagnostics response
     match timeout(Duration::from_millis(50), client.receive_message()).await {
-        Ok(Some(RpcMessage::Response(response))) => {
+        Ok(Some(RpcMessage::Response(_response))) => {
             println!("✅ Received initialize response (capabilities)");
         }
         _ => {}
