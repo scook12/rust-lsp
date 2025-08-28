@@ -1,0 +1,20 @@
+[package]
+name = "rust-lsp"
+version = "0.1.0"
+edition = "2021"
+authors = ["Your Name <email@example.com>"]
+description = "A Language Server Protocol client implementation in Rust"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/your-username/rust-lsp"
+readme = "README.md"
+keywords = ["lsp", "language-server-protocol", "editor", "ide"]
+categories = ["text-editors", "development-tools"]
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tokio = { version = "1.0", features = ["full"] }
+thiserror = "1.0"
+log = "0.4"
+url = "2.5"
+futures = "0.3"
