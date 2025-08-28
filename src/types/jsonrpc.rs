@@ -147,9 +147,11 @@ impl NotificationMessage {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum RpcMessage {
-    Request(RequestMessage),
-    Response(ResponseMessage),
-    Notification(NotificationMessage),
+    // Order matters for untagged deserialization!
+    // Most specific variants should come first
+    Request(RequestMessage),     // Has both id and method
+    Notification(NotificationMessage), // Has method, no id
+    Response(ResponseMessage),   // May have only id, or no required fields
 }
 
 impl RpcMessage {
