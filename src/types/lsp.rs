@@ -155,7 +155,7 @@ pub struct Diagnostic {
 }
 
 /// The diagnostic's severity.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(u8)]
 pub enum DiagnosticSeverity {
     /// Reports an error.
@@ -166,6 +166,34 @@ pub enum DiagnosticSeverity {
     Information = 3,
     /// Reports a hint.
     Hint = 4,
+}
+
+impl Serialize for DiagnosticSeverity {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        serializer.serialize_u8(*self as u8)
+    }
+}
+
+impl<'de> Deserialize<'de> for DiagnosticSeverity {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        let value = u8::deserialize(deserializer)?;
+        match value {
+            1 => Ok(DiagnosticSeverity::Error),
+            2 => Ok(DiagnosticSeverity::Warning),
+            3 => Ok(DiagnosticSeverity::Information),
+            4 => Ok(DiagnosticSeverity::Hint),
+            _ => Err(serde::de::Error::custom(format!(
+                "Invalid diagnostic severity: {}",
+                value
+            ))),
+        }
+    }
 }
 
 /// The diagnostic's code.
@@ -184,13 +212,39 @@ pub struct CodeDescription {
 }
 
 /// The diagnostic tags.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(u8)]
 pub enum DiagnosticTag {
     /// Unused or unnecessary code.
     Unnecessary = 1,
     /// Deprecated or obsolete code.
     Deprecated = 2,
+}
+
+impl Serialize for DiagnosticTag {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        serializer.serialize_u8(*self as u8)
+    }
+}
+
+impl<'de> Deserialize<'de> for DiagnosticTag {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        let value = u8::deserialize(deserializer)?;
+        match value {
+            1 => Ok(DiagnosticTag::Unnecessary),
+            2 => Ok(DiagnosticTag::Deprecated),
+            _ => Err(serde::de::Error::custom(format!(
+                "Invalid diagnostic tag: {}",
+                value
+            ))),
+        }
+    }
 }
 
 /// Represents a related message and source code location for a diagnostic.
