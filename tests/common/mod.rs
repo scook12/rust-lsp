@@ -3,7 +3,7 @@
 //! This module provides shared testing utilities, mock implementations,
 //! and test data for integration and unit tests.
 #![allow(dead_code)]
-use rust_lsp::{types::*, Client};
+use tokio_lsp::{prelude::*, Client};
 use std::io::{Cursor, Result as IoResult};
 use std::pin::Pin;
 use std::task::{Context, Poll};

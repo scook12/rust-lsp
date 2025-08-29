@@ -1,14 +1,17 @@
 [package]
-name = "rust-lsp"
+name = "tokio-lsp"
 version = "0.1.0"
 edition = "2021"
-authors = ["Your Name <email@example.com>"]
-description = "A Language Server Protocol client implementation in Rust"
+authors = ["Sam <rigdoncook@gmail.com>"]
+description = "A robust, async Language Server Protocol (LSP) client implementation in Rust with full LSP 3.16 support"
 license = "MIT OR Apache-2.0"
-repository = "https://github.com/your-username/rust-lsp"
+repository = "https://github.com/sam10266/rust-lsp"
+homepage = "https://github.com/sam10266/rust-lsp"
+documentation = "https://docs.rs/tokio-lsp"
 readme = "README.md"
-keywords = ["lsp", "language-server-protocol", "editor", "ide"]
-categories = ["text-editors", "development-tools"]
+keywords = ["lsp", "language-server", "async", "editor", "tokio"]
+categories = ["development-tools", "asynchronous"]
+exclude = ["/.github", "/target", "/examples", "**/*.orig"]
 
 [dependencies]
 serde = { version = "1.0", features = ["derive"] }

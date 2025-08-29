@@ -3,12 +3,12 @@
 //! This example demonstrates how to handle diagnostic messages from
 //! language servers, including errors, warnings, and informational messages.
 
-use rust_lsp::{types::*, Client};
+use tokio_lsp::{prelude::*, Client};
 use std::io::Cursor;
 use tokio::time::{timeout, Duration};
 
 #[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
+async fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     println!("🔍 Diagnostics Handling Example");
     println!("===============================");
 

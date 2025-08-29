@@ -3,12 +3,12 @@
 //! This example demonstrates the concepts of text document synchronization
 //! and shows how you would handle different file operations with the client.
 
-use rust_lsp::{types::*, Client};
+use tokio_lsp::{prelude::*, Client};
 use std::io::Cursor;
 use tokio::time::{timeout, Duration};
 
 #[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
+async fn main() -> std::result::Result<(), Box<dyn std::error::Error>> {
     println!("📄 File Operations Example");
     println!("==========================");
 

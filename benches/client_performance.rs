@@ -4,7 +4,7 @@
 //! including message handling, async operations, and throughput.
 
 use criterion::{black_box, criterion_group, criterion_main, BenchmarkId, Criterion};
-use rust_lsp::Client;
+use tokio_lsp::Client;
 use std::io::Cursor;
 use std::sync::Arc;
 use tokio::runtime::Runtime;

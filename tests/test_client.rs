@@ -6,7 +6,7 @@
 mod common;
 
 use common::*;
-use rust_lsp::{error::*, types::*, Client};
+use tokio_lsp::{error::*, types::*, Client};
 use serde_json::json;
 use std::io::Cursor;
 use tokio::time::{timeout, Duration};

@@ -4,7 +4,7 @@
 //! serialization, and various LSP type operations.
 
 use criterion::{black_box, criterion_group, criterion_main, BenchmarkId, Criterion};
-use rust_lsp::types::*;
+use tokio_lsp::types::*;
 use serde_json::{json, Value};
 use std::collections::HashMap;
 

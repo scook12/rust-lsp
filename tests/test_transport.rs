@@ -7,7 +7,7 @@ mod common;
 
 use common::*;
 use core::panic;
-use rust_lsp::{transport::*, Client};
+use tokio_lsp::{transport::*, types::*, Client};
 use std::io::{Cursor, ErrorKind};
 use tokio::time::{timeout, Duration};
 
@@ -89,8 +89,8 @@ async fn test_message_writing() {
 
     let mut transport = Transport::new(reader, writer);
 
-    let test_rpc = rust_lsp::types::RpcMessage::Notification(
-        rust_lsp::types::NotificationMessage::new("test/method"),
+    let test_rpc = RpcMessage::Notification(
+        NotificationMessage::new("test/method"),
     );
 
     let _result = transport.write_rpc_message(&test_rpc).await;
@@ -237,7 +237,7 @@ async fn test_rpc_message_parsing() {
 
         if let Ok(rpc_message) = rpc_result {
             match rpc_message {
-                rust_lsp::types::RpcMessage::Notification(notif) => {
+                RpcMessage::Notification(notif) => {
                     assert_eq!(notif.method, "test/notification");
                 }
                 _ => panic!("Expected notification message"),

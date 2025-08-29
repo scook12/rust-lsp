@@ -6,7 +6,7 @@
 mod common;
 
 use common::*;
-use rust_lsp::{error::ResponseError, types::*};
+use tokio_lsp::{error::ResponseError, types::*};
 use serde_json::json;
 
 #[test]

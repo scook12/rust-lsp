@@ -1,4 +1,4 @@
-# rust-lsp
+# tokio-lsp
 
 A Language Server Protocol (LSP) client implementation in Rust.
 
@@ -29,14 +29,14 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-rust-lsp = "0.1.0"
+tokio-lsp = "0.1.0"
 tokio = { version = "1.0", features = ["full"] }
 ```
 
 ### Basic Usage
 
 ```rust
-use rust_lsp::Client;
+use tokio_lsp::Client;
 use std::process::Stdio;
 use tokio::process::Command;
 
@@ -75,7 +75,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 For more control over the initialization process:
 
 ```rust
-use rust_lsp::{Client, InitializeParams, ClientCapabilities, ClientInfo};
+use tokio_lsp::{Client, InitializeParams, ClientCapabilities, ClientInfo};
 
 // Create initialize parameters
 let params = InitializeParams {
@@ -165,7 +165,7 @@ The transport layer handles the LSP base protocol:
 The crate provides detailed error types:
 
 ```rust
-use rust_lsp::{LspError, Result};
+use tokio_lsp::{LspError, Result};
 
 match client.send_request("textDocument/hover", params).await {
     Ok(response) => { /* handle success */ },

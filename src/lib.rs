@@ -1,4 +1,4 @@
-//! # rust-lsp
+//! # tokio-lsp
 //!
 //! A Language Server Protocol (LSP) client implementation in Rust.
 //!
@@ -17,7 +17,7 @@
 //! ## Example
 //!
 //! ```rust,no_run
-//! use rust_lsp::Client;
+//! use tokio_lsp::Client;
 //! use tokio::process::{ChildStdin, ChildStdout};
 //! use std::io::Cursor;
 //!

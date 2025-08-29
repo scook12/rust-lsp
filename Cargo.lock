@@ -965,27 +965,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "caf4aa5b0f434c91fe5c7f1ecb6a5ece2130b02ad2a590589dda5146df959001"
 
 [[package]]
-name = "rust-lsp"
-version = "0.1.0"
-dependencies = [
- "bytes",
- "criterion",
- "futures",
- "log",
- "mockall",
- "proptest",
- "serde",
- "serde_json",
- "serial_test",
- "tempfile",
- "thiserror",
- "tokio",
- "tokio-test",
- "tokio-util",
- "url",
-]
-
-[[package]]
 name = "rustc-demangle"
 version = "0.1.26"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1251,6 +1230,27 @@ dependencies = [
  "socket2",
  "tokio-macros",
  "windows-sys",
+]
+
+[[package]]
+name = "tokio-lsp"
+version = "0.1.0"
+dependencies = [
+ "bytes",
+ "criterion",
+ "futures",
+ "log",
+ "mockall",
+ "proptest",
+ "serde",
+ "serde_json",
+ "serial_test",
+ "tempfile",
+ "thiserror",
+ "tokio",
+ "tokio-test",
+ "tokio-util",
+ "url",
 ]
 
 [[package]]

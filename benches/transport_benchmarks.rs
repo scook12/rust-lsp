@@ -4,7 +4,7 @@
 //! implementations, async I/O operations, and message framing.
 
 use criterion::{black_box, criterion_group, criterion_main, BenchmarkId, Criterion};
-use rust_lsp::{transport::*, types::*};
+use tokio_lsp::{transport::*, types::*};
 use std::io::Cursor;
 use tokio::runtime::Runtime;
 
