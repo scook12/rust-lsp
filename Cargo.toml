@@ -1,6 +1,6 @@
 [package]
 name = "tokio-lsp"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 authors = ["Sam <rigdoncook@gmail.com>"]
 description = "A robust, async Language Server Protocol (LSP) client implementation in Rust with full LSP 3.16 support"
